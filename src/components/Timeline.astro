@@ -1,0 +1,56 @@
+---
+// Timeline with a centre rail on desktop that becomes a left rail on phones.
+//
+// One copy of each entry, no duplicated mobile/desktop markup: the card is a
+// half-width column above `md` and alternates sides via `md:` ordering.
+const { title, entries } = Astro.props
+---
+
+<div class="max-w-4xl mx-auto w-full mt-16">
+  <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-16 scroll-reveal">{title}</h2>
+
+  <div class="relative pl-8 md:pl-0">
+    <!-- centre rail on desktop -->
+    <div class="hidden md:block absolute left-1/2 -translate-x-1/2 w-1 h-full timeline-line rounded-full"></div>
+    <!-- left rail on phones -->
+    <div class="md:hidden absolute left-[7px] top-3 bottom-3 w-0.5 rounded-full bg-gradient-to-b from-danger via-azure to-danger"></div>
+
+    <div class="space-y-10 md:space-y-12">
+      {
+        entries.map((entry, index) => (
+          <div class="relative md:flex items-center scroll-reveal">
+            <span
+              class={`md:hidden absolute -left-[36px] top-4 w-4 h-4 rounded-full border-4 border-ink ${entry.dot}`}
+            />
+
+            <div
+              class={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:ml-auto'}`}
+            >
+              <div class="glass rounded-2xl p-6 tile inline-block text-left">
+                {entry.badge && (
+                  <span class="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-xs font-semibold">
+                    {entry.badge}
+                  </span>
+                )}
+                <h3 class="font-semibold text-lg mt-2">{entry.title}</h3>
+                <p class="text-slate-400 text-sm">{entry.org}</p>
+                <p class="text-blue-400 text-sm">{entry.dates}</p>
+                {entry.bullets && (
+                  <ul class="text-slate-300 text-sm mt-3 space-y-1 list-disc pl-5">
+                    {entry.bullets.map((b) => (
+                      <li>{b}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+
+            <span
+              class={`hidden md:block absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-4 border-ink ${entry.dot}`}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

@@ -2,6 +2,49 @@
 import '../styles/global.css'
 import { getCollection } from 'astro:content'
 import About from '../content/about.md'
+import Timeline from '../components/Timeline.astro'
+
+const experience = [
+  {
+    title: 'Public Service Assistant — Front Desk Officer',
+    org: 'Punjab Police · Muzaffargarh',
+    dates: 'Nov 2023 – Present',
+    badge: 'Current',
+    dot: 'bg-red-500',
+    bullets: [
+      'Front desk support and visitor queries in an IT-enabled office',
+      'Data entry and internal database record maintenance',
+      'Report processing, verification, and preparation',
+      'System monitoring and basic IT troubleshooting',
+    ],
+  },
+  {
+    title: 'Computer Operator',
+    org: 'National News Agency, Muzaffargarh',
+    dates: '2019 – 2023',
+    dot: 'bg-azure',
+  },
+]
+
+const education = [
+  {
+    title: 'B.S. Computer Science',
+    org: 'Multan University of Science and Technology',
+    dates: 'Nov 2024 – Nov 2028',
+    dot: 'bg-red-400',
+    bullets: [
+      'Programming Fundamentals, OOP, Data Structures, Databases',
+      'Member, Information and Computer Sciences Society',
+      'Python and web development workshops; coding competitions',
+    ],
+  },
+  {
+    title: 'Intermediate in Computer Science',
+    org: 'Govt. Graduate College',
+    dates: '2020 – 2022',
+    dot: 'bg-azure',
+  },
+]
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order)
 const certs = (await getCollection('certs')).sort((a, b) => a.data.order - b.data.order)
@@ -63,19 +106,19 @@ const navLinks = [
       <div class="orb orb-3"></div>
     </div>
 
-    <nav class="fixed top-4 left-1/2 -translate-x-1/2 z-50 glass-nav rounded-full px-6 py-3 flex items-center gap-6 max-w-[95vw] overflow-x-auto">
+    <nav class="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-50 glass-nav rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center gap-3 sm:gap-6 max-w-[94vw] overflow-x-auto nav-scroll">
       {
         navLinks.map(([id, label]) => (
-          <a href={`#${id}`} data-section={id} class="nav-link text-sm font-medium hover:text-red-400 transition-colors whitespace-nowrap">
+          <a href={`#${id}`} data-section={id} class="nav-link text-xs sm:text-sm font-medium hover:text-red-400 transition-colors whitespace-nowrap">
             {label}
           </a>
         ))
       }
     </nav>
 
-    <section id="hero" class="min-h-screen flex items-center justify-center relative px-4">
+    <section id="hero" class="md:min-h-screen flex items-center justify-center relative px-4 py-24 md:py-20">
       <div class="text-center max-w-4xl mx-auto scroll-reveal mt-16">
-        <h1 class="font-display text-6xl md:text-8xl font-bold text-gradient mb-4">Imran Mazhar</h1>
+        <h1 class="font-display text-5xl sm:text-6xl md:text-8xl font-bold text-gradient mb-4">Imran Mazhar</h1>
         <p class="text-2xl md:text-3xl text-slate-300 font-light mb-4">IT Support & Front Desk Operations</p>
         <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
           Public Service Assistant at Punjab Police, studying Computer Science at MultanUST. Learning
@@ -92,7 +135,7 @@ const navLinks = [
       </div>
     </section>
 
-    <section id="about" class="min-h-screen flex items-center py-20 px-4">
+    <section id="about" class="md:min-h-screen flex items-center py-14 md:py-20 px-4">
       <div class="max-w-6xl mx-auto w-full mt-16">
         <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-16 scroll-reveal">About Me</h2>
         <div class="grid md:grid-cols-2 gap-8">
@@ -146,127 +189,17 @@ const navLinks = [
       </div>
     </section>
 
-    <section id="experience" class="min-h-screen flex items-center py-20 px-4">
-      <div class="max-w-4xl mx-auto w-full mt-16">
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-16 scroll-reveal">Experience</h2>
-        <div class="relative">
-          <div class="absolute left-1/2 -translate-x-1/2 w-1 h-full timeline-line rounded-full"></div>
-          <div class="space-y-12">
-            <div class="relative flex items-center scroll-reveal">
-              <div class="w-1/2 pr-8 text-right hidden md:block">
-                <div class="glass rounded-2xl p-6 tile inline-block">
-                  <span class="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-xs font-semibold">Current</span>
-                  <h3 class="font-semibold text-lg mt-2">Public Service Assistant — Front Desk Officer</h3>
-                  <p class="text-slate-400 text-sm">Punjab Police · Muzaffargarh</p>
-                  <p class="text-blue-400 text-sm">Nov 2023 – Present</p>
-                  <ul class="text-slate-300 text-sm mt-3 space-y-1 list-disc pl-5 text-left">
-                    <li>Front desk support and visitor queries in an IT-enabled office</li>
-                    <li>Data entry and internal database record maintenance</li>
-                    <li>Report processing, verification, and preparation</li>
-                    <li>System monitoring and basic IT troubleshooting</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-red-500 rounded-full border-4 border-slate-900 z-10"></div>
-              <div class="w-1/2 pl-8 hidden md:block"></div>
-              <div class="md:hidden w-full">
-                <div class="glass rounded-2xl p-6 tile">
-                  <span class="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-xs font-semibold">Current</span>
-                  <h3 class="font-semibold text-lg mt-2">Public Service Assistant — Front Desk Officer</h3>
-                  <p class="text-slate-400 text-sm">Punjab Police · Muzaffargarh</p>
-                  <p class="text-blue-400 text-sm">Nov 2023 – Present</p>
-                  <ul class="text-slate-300 text-sm mt-3 space-y-1 list-disc pl-5">
-                    <li>Front desk support and visitor queries in an IT-enabled office</li>
-                    <li>Data entry and internal database record maintenance</li>
-                    <li>Report processing, verification, and preparation</li>
-                    <li>System monitoring and basic IT troubleshooting</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="relative flex items-center scroll-reveal">
-              <div class="w-1/2 pr-8 hidden md:block"></div>
-              <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-blue-500 rounded-full border-4 border-slate-900 z-10"></div>
-              <div class="w-1/2 pl-8 hidden md:block">
-                <div class="glass rounded-2xl p-6 tile inline-block">
-                  <h3 class="font-semibold text-lg">Computer Operator</h3>
-                  <p class="text-slate-400 text-sm">National News Agency, Muzaffargarh</p>
-                  <p class="text-blue-400 text-sm">2019 – 2023</p>
-                </div>
-              </div>
-              <div class="md:hidden w-full">
-                <div class="glass rounded-2xl p-6 tile">
-                  <h3 class="font-semibold text-lg">Computer Operator</h3>
-                  <p class="text-slate-400 text-sm">National News Agency, Muzaffargarh</p>
-                  <p class="text-blue-400 text-sm">2019 – 2023</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section id="experience" class="md:min-h-screen py-14 md:py-20 px-4">
+      <Timeline title="Experience" entries={experience} />
 
-        <div class="max-w-4xl mx-auto w-full mt-16">
-          <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-16 scroll-reveal">Education</h2>
-          <div class="relative">
-            <div class="absolute left-1/2 -translate-x-1/2 w-1 h-full timeline-line rounded-full"></div>
-            <div class="space-y-12">
-              <div class="relative flex items-center scroll-reveal">
-                <div class="w-1/2 pr-8 text-right hidden md:block">
-                  <div class="glass rounded-2xl p-6 tile inline-block">
-                    <h3 class="font-semibold text-lg">B.S. Computer Science</h3>
-                    <p class="text-slate-400 text-sm">Multan University of Science and Technology</p>
-                    <p class="text-blue-400 text-sm">Nov 2024 – Nov 2028</p>
-                    <ul class="text-slate-300 text-sm mt-3 space-y-1 list-disc pl-5 text-left">
-                      <li>Programming Fundamentals, OOP, Data Structures, Databases</li>
-                      <li>Member, Information and Computer Sciences Society</li>
-                      <li>Python and web development workshops; coding competitions</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-red-400 rounded-full border-4 border-slate-900 z-10"></div>
-                <div class="w-1/2 pl-8 hidden md:block"></div>
-                <div class="md:hidden w-full">
-                  <div class="glass rounded-2xl p-6 tile">
-                    <h3 class="font-semibold text-lg">B.S. Computer Science</h3>
-                    <p class="text-slate-400 text-sm">Multan University of Science and Technology</p>
-                    <p class="text-blue-400 text-sm">Nov 2024 – Nov 2028</p>
-                    <ul class="text-slate-300 text-sm mt-3 space-y-1 list-disc pl-5">
-                      <li>Programming Fundamentals, OOP, Data Structures, Databases</li>
-                      <li>Member, Information and Computer Sciences Society</li>
-                      <li>Python and web development workshops; coding competitions</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="relative flex items-center scroll-reveal">
-                <div class="w-1/2 pr-8 hidden md:block"></div>
-                <div class="absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-blue-400 rounded-full border-4 border-slate-900 z-10"></div>
-                <div class="w-1/2 pl-8 hidden md:block">
-                  <div class="glass rounded-2xl p-6 tile inline-block">
-                    <h3 class="font-semibold text-lg">Intermediate in Computer Science</h3>
-                    <p class="text-slate-400 text-sm">Govt. Graduate College</p>
-                    <p class="text-blue-400 text-sm">2020 – 2022</p>
-                  </div>
-                </div>
-                <div class="md:hidden w-full">
-                  <div class="glass rounded-2xl p-6 tile">
-                    <h3 class="font-semibold text-lg">Intermediate in Computer Science</h3>
-                    <p class="text-slate-400 text-sm">Govt. Graduate College</p>
-                    <p class="text-blue-400 text-sm">2020 – 2022</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Timeline title="Education" entries={education} />
     </section>
 
-    <section id="skills" class="min-h-screen flex items-center py-20 px-4">
+    <section id="skills" class="md:min-h-screen flex items-center py-14 md:py-20 px-4">
       <div class="max-w-6xl mx-auto w-full mt-16">
         <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-6 scroll-reveal">Skills</h2>
         <p class="text-slate-400 text-center mb-16 scroll-reveal">Tools and areas I work with or learning</p>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 scroll-reveal">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 scroll-reveal">
           {
             skills.map((s) => (
               <div class="glass rounded-2xl p-4 text-center tile">
@@ -293,7 +226,7 @@ const navLinks = [
       </div>
     </section>
 
-    <section id="projects" class="min-h-screen flex items-center py-20 px-4">
+    <section id="projects" class="md:min-h-screen flex items-center py-14 md:py-20 px-4">
       <div class="max-w-6xl mx-auto w-full mt-16">
         <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-16 scroll-reveal">Projects</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -319,11 +252,11 @@ const navLinks = [
       </div>
     </section>
 
-    <section id="contact" class="min-h-screen flex items-center py-20 px-4 relative">
+    <section id="contact" class="md:min-h-screen flex items-center py-14 md:py-20 px-4 relative">
       <div class="max-w-6xl mx-auto w-full mt-16">
         <h2 class="font-display text-4xl md:text-5xl font-bold text-center mb-16 scroll-reveal">Get In Touch</h2>
         <div class="grid md:grid-cols-2 gap-8">
-          <div class="glass rounded-3xl p-8 tile scroll-reveal">
+          <div class="glass rounded-3xl p-8 tile scroll-reveal min-w-0">
             <h3 class="text-xl font-semibold text-red-400 mb-6">Send a Message</h3>
             <form id="contact-form" class="space-y-4">
               <div>
@@ -350,19 +283,19 @@ const navLinks = [
               </div>
             </form>
           </div>
-          <div class="space-y-6">
+          <div class="space-y-6 min-w-0">
             <div class="glass rounded-3xl p-6 tile scroll-reveal">
               <div class="flex items-center gap-4">
                 <div class="p-4 rounded-2xl bg-gradient-to-br from-red-500/20 to-blue-500/20 shrink-0">
                   <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 </div>
-                <div class="overflow-hidden flex-1">
+                <div class="min-w-0 flex-1">
                   <h4 class="text-slate-400 text-sm">Email</h4>
-                  <p class="font-semibold truncate">heyimran.pdf@gmail.com</p>
+                  <a href="mailto:heyimran.pdf@gmail.com" class="font-semibold text-sm sm:text-base break-words hover:text-red-400 transition-colors">heyimran.pdf@gmail.com</a>
                 </div>
                 <button
                   id="copy-email"
-                  class="shrink-0 text-xs px-3 py-2 rounded-lg glass hover:border-red-500/50 hover:text-red-400 transition-colors"
+                  class="hidden sm:inline-block shrink-0 text-xs px-3 py-2 rounded-lg glass hover:border-red-500/50 hover:text-red-400 transition-colors"
                   aria-label="Copy email address"
                 >
                   Copy

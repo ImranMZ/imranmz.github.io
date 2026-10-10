@@ -191,6 +191,25 @@ html { scroll-behavior: smooth; }
   }
 }
 
+/* Hide the scrollbar on the nav pill but keep it scrollable, and fade the
+   edges so it is obvious there is more to swipe to. */
+.nav-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+}
+
+.nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-scroll:hover {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
 /* ---------- tile pop-up ----------
    Defined last so `.tile:hover` wins over `.scroll-reveal.visible`, which has the
    same specificity and would otherwise reset the transform while hovering. */
